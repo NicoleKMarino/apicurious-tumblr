@@ -31,6 +31,9 @@ gem 'turbolinks'
 gem 'kaminari'
 require 'rubygems'
 require 'json'
+gem 'rspec-rails'
+gem 'capybara'
+gem 'launchy'
 
 
 # Use Redis adapter to run Action Cable in production
@@ -44,6 +47,10 @@ require 'json'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+end
+group :test do
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do

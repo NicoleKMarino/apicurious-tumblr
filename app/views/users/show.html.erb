@@ -5,10 +5,13 @@
   <br>
   <strong><h2>Hello, <%= current_user.name%>.</h2></strong>
     <br>
-    <p> Description: <%= @info[:response][:blog][:title]%></p>
-    <p> # of Posts: <%= @info[:response][:blog][:total_posts]%></p>
-    <p> Is this blog nsfw? <%= @info[:response][:blog][:is_nsfw]%></p>
+    <h3> Intro:</h3> <%= @info[:response][:blog][:title]%>
+    <h3> Description:</h3> <%= @info[:response][:blog][:description]%>
+    <h3> # of Posts: </h3><%= @info[:response][:blog][:total_posts]%>
+    <h3> Is this blog nsfw?</h3> <%= @info[:response][:blog][:is_nsfw]%>
+    <br></br>
     <%= link_to "Favorites", likes_path %>
+    <%= link_to "Followers", followers_path %>
 </div>
 
 <%@posts["posts"].each do |post| %>

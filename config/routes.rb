@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :posts, only: [:update]
   resources :likes, only: [:index]
+  resources :followers, only: [:index]
   get 'posts/:id/:key/like' => 'posts#like', via: [:patch, :put], as: :posts_like
 end

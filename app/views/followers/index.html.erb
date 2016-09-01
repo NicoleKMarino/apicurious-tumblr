@@ -1,0 +1,11 @@
+<h2>Followers:<%=@followers["total_users"] %></h2>
+<%@followers["users"].each do |follower| %>
+<div class="col-xs-offset-3 col-sm-offset-0 col-md-12 thumbnail col-centered row">
+<img class="align-corner" src="http://api.tumblr.com/v2/blog/<%=follower["name"]%>.tumblr.com/avatar/96">
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<a href="<%=follower["url"]%>"><%=follower["name"] %></a>
+</div>
+<%end %>

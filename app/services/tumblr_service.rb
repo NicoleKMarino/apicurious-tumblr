@@ -24,6 +24,10 @@ class TumblrService
     parse(response.body)
   end
 
+  def get_followers
+    response = current_client.followers("#{@current_user.name}.tumblr.com")
+  end
+
   def reblog(id, key)
     response = current_client.reblog(@current_user.name, {id: id, reblog_key: key})
   end
