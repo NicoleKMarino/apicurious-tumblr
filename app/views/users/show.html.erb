@@ -1,0 +1,33 @@
+
+<div class="col-xs-offset-3 col-sm-offset-0 col-xs-6 thumbnail col-centered transparent">
+  <img class="pull-right" src="http://api.tumblr.com/v2/blog/<%=current_user.name%>.tumblr.com/avatar/128">
+  <br>
+  <br>
+  <strong><h2>Hello, <%= current_user.name%>.</h2></strong>
+    <br>
+    <p> Description: <%= @info[:response][:blog][:title]%></p>
+    <p> # of Posts: <%= @info[:response][:blog][:total_posts]%></p>
+    <p> Is this blog nsfw? <%= @info[:response][:blog][:is_nsfw]%></p>
+    <%= link_to "Favorites", likes_path %>
+</div>
+
+<%@posts["posts"].each do |post| %>
+<%if post["photos"] != nil %>
+<div class="col-md-10 thumbnail col-centered">
+<% post["photos"].each do |photo|%>
+<img class="post-image" src="<%=photo["alt_sizes"][0]["url"] %>">
+<%end %>
+<br></br>
+<%= post["caption"].html_safe unless post["caption"].nil?%>
+<%= post["content"] %>
+</div>
+<br></br>
+<%else %>
+<div class="col-md-10 thumbnail col-centered">
+<%= post["caption"].html_safe unless post["caption"].nil?%>
+<%= post["content"] %>
+<%= post["body"].html_safe unless post["body"].nil?%>
+<br></br>
+</div>
+<%end %>
+<%end %>

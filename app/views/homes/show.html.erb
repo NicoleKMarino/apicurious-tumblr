@@ -1,0 +1,40 @@
+<%if current_user.nil? %>
+  <%= link_to "Sign in with Tumblr", tumblr_login_path %>
+<%else %>
+  <center>
+  <%@posts.each do |post| %>
+  <br></br>
+  <% if post["photos"] == nil%>
+    <div class="col-md-10 thumbnail col-centered">
+    <img class="align-corner" src="http://api.tumblr.com/v2/blog/<%=post["blog_name"]%>.tumblr.com/avatar/96">
+    <br></br>
+    <br></br>
+    <br></br>
+    <%= post["blog_name"] %>
+    <%= post["title"].html_safe unless post["title"].nil?%>
+    <%= post["body"].html_safe unless post["body"].nil?%>
+    <%= post["caption"].html_safe unless post["caption"].nil?%>
+    <%= button_to 'Reblog', post_path(id: post["id"], name: post["blog_name"], key: post["reblog_key"]), :method => :patch%>
+    <%= link_to 'Favorite', posts_like_path(id: post["id"], key: post["reblog_key"])%>
+    </div>
+  <%else %>
+    <div class="col-md-10 thumbnail col-centered">
+    <% post["photos"].each do |photo|%>
+    <img class="post-image" src="<%=photo["alt_sizes"][0]["url"] %>">
+    <br></br>
+  <%end %>
+  <img class="align-corner" src="http://api.tumblr.com/v2/blog/<%=post["blog_name"]%>.tumblr.com/avatar/96">
+  <br></br>
+  <br></br>
+  <br></br>
+  <%= post["blog_name"] %>
+  <%= post["title"].html_safe unless post["title"].nil?%>
+  <%= post["body"].html_safe unless post["body"].nil?%>
+  <%= post["caption"].html_safe unless post["caption"].nil?%>
+  <%= button_to 'Reblog', post_path(id: post["id"], name: post["blog_name"], key: post["reblog_key"]), :method => :patch%>
+  <%= link_to 'Favorite', posts_like_path(id: post["id"], key: post["reblog_key"])%>
+  </div>
+  <%end %>
+  <%end %>
+</center>
+<%end %>

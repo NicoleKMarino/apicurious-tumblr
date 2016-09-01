@@ -1,0 +1,16 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+    </button>
+    <a class="navbar-brand" href="/">Dumblr</a>
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <% if current_user %>
+      <%= link_to "Hello, #{current_user.name}", user_path(current_user.id)%>
+      <%= link_to "Logout", logout_path %>
+
+    <% else %>
+      <%= link_to "Sign in with Tumblr", tumblr_login_path %>
+    <% end %>
+  </div>
+</nav>

@@ -1,0 +1,26 @@
+<center>
+<%@likes[:response][:liked_posts].each do |post| %>
+<br></br>
+<%if post[:photos] == nil %>
+  <div class="col-md-10 thumbnail col-centered">
+    <img class="align-corner" src="http://api.tumblr.com/v2/blog/<%=post[:blog_name]%>.tumblr.com/avatar/96">
+  <%= post[:blog_name] %>
+  <%= post[:caption].html_safe unless post[:caption].nil?%>
+  <%= post[:title].html_safe unless post[:title].nil?%>
+  <%= post[:body].html_safe unless post[:body].nil?%>
+  </div>
+<%else %>
+  <div class="col-md-10 thumbnail col-centered">
+  <% post[:photos].each do |photo|%>
+  <img class="post-image" src="<%=photo[:alt_sizes][0][:url]%>">
+  <br></br>
+  <%end %>
+  <img class="align-corner" src="http://api.tumblr.com/v2/blog/<%=post[:blog_name]%>.tumblr.com/avatar/96">
+  <%= post[:blog_name] %>
+  <%= post[:title].html_safe unless post[:title].nil?%>
+  <%= post[:body].html_safe unless post[:body].nil?%>
+  <%= post[:caption].html_safe unless post[:caption].nil?%>
+  </div>
+<%end %>
+<%end %>
+</center>
